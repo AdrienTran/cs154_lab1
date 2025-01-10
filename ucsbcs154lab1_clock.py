@@ -19,7 +19,7 @@ output_minutes = pyrtl.Output(bitwidth=6, name="output_minutes") # name="output_
 output_hours = pyrtl.Output(bitwidth=5, name="output_hours")   # name="output_hours"
 
 # Initialize Registers Here
-seconds = pyrtl.Register(bitwidth=6, name='s', reset_value=1)
+seconds = pyrtl.Register(bitwidth=6, name='s')
 minutes = pyrtl.Register(bitwidth=6, name='m')
 hours = pyrtl.Register(bitwidth=5, name='h')
 
