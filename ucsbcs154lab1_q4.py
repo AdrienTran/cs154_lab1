@@ -9,6 +9,7 @@
 # r = a xnor b, and cout, r = a + b
 
 import pyrtl
+pyrtl.set_debug_mode()
 
 # Declare two 1-bit data inputs: a, b
 a = pyrtl.Input(bitwidth=1, name='a')
@@ -25,8 +26,8 @@ def half_adder(a, b):
     """
         ha_carry_out, ha_sum = a + b
     """
-    ha_sum = # < add your code here >
-    ha_carry_out = # < add your code here >
+    ha_sum = a ^ b # < add your code here >
+    ha_carry_out = a & b # < add your code here >
     return ha_sum, ha_carry_out
 
 
@@ -38,15 +39,25 @@ def ucsbcs154lab1_alu (a, b, op):
         else if op == 2" return a + b
     """
     # Operation 0: a and b
-    op0 = # < add your code here >
+    op0 = a & b # < add your code here >
     # Operation 1: a xnor b
-    op1 = # < add your code here >
+    op1 = ~(a ^ b) # < add your code here >
     # Operation 2: a + b
     op2_s, op2_c = half_adder(a, b)
     # Based on the given "op", return the proper signals as outputs
     alu_r = pyrtl.WireVector(bitwidth=1)
     alu_cout = pyrtl.WireVector(bitwidth=1)
     # < add your code here >
+    with pyrtl.conditional_assignment:
+        with op == 0:
+            alu_r |= op0
+            alu_cout |= op0
+        with op == 1:
+            alu_r |= op1
+            alu_cout |= op1
+        with op == 2:
+            alu_r |= op2_s
+            alu_cout |= op2_c
     return alu_r, alu_cout
 
 # Call the above-defined "alu" function and connect its results to the block's output ports 

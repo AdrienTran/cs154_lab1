@@ -14,14 +14,14 @@ How many bits do you need to represent the time? (You want to use the minimum am
 How do you update registers?
 """
 # Initialize outputs
-output_seconds = pyrtl.Output(...) # name="output_seconds"
-output_minutes = pyrtl.Output(...) # name="output_minutes"
-output_hours = pyrtl.Output(...)   # name="output_hours"
+output_seconds = pyrtl.Output(bitwidth=6, name="output_seconds") # name="output_seconds"
+output_minutes = pyrtl.Output(bitwidth=6, name="output_minutes") # name="output_minutes"
+output_hours = pyrtl.Output(bitwidth=5, name="output_hours")   # name="output_hours"
 
 # Initialize Registers Here
-seconds = pyrtl.Register(...)
-minutes = pyrtl.Register(...)
-hours = pyrtl.Register(...)
+seconds = pyrtl.Register(bitwidth=6, name='s')
+minutes = pyrtl.Register(bitwidth=6, name='m')
+hours = pyrtl.Register(bitwidth=5, name='h')
 
 # Put Sequential Logic Here
 # update the seconds register here
