@@ -34,11 +34,11 @@ with pyrtl.conditional_assignment:
     o |= val_a
   with s == 1:
     o |= val_b
-  with s == 10:
+  with s == 2:
     o |= val_c
-  with s == 11:
+  with s == 3:
     o |= val_d
-  with s == 100:
+  with s == 4:
     o |= val_e
 
 # Simulate and test your design for 16 cycles using random inputs
