@@ -14,18 +14,18 @@ import random
 
 # Declare five data inputs: a, b, c, d, e
 # < add your code here >
-val_a = pyrtl.Input(bitwidth=1, name='a')
-val_b = pyrtl.Input(bitwidth=1, name='b')
-val_c = pyrtl.Input(bitwidth=1, name='c')
-val_d = pyrtl.Input(bitwidth=1, name='d')
-val_e = pyrtl.Input(bitwidth=1, name='e')
+val_a = pyrtl.Input(bitwidth=3, name='a')
+val_b = pyrtl.Input(bitwidth=3, name='b')
+val_c = pyrtl.Input(bitwidth=3, name='c')
+val_d = pyrtl.Input(bitwidth=3, name='d')
+val_e = pyrtl.Input(bitwidth=3, name='e')
 
 # Declare control inputs
 s = pyrtl.Input(bitwidth=3, name='s')
 
 # Declare one output: o 
 # < add your code here >
-o = pyrtl.Output(bitwidth=1, name='o')
+o = pyrtl.Output(bitwidth=3, name='o')
 
 # Describe your 5:1 MUX implementation
 # < add your code here >
@@ -48,15 +48,16 @@ sim = pyrtl.Simulation(tracer=sim_trace)
 
 for cycle in range(16):
     sim.step({
-        'a': random.choice([0, 1]),
-        'b': random.choice([0, 1]),
-        'c': random.choice([0, 1]),
-        'd': random.choice([0, 1]),
-        'e': random.choice([0, 1]),
-        's': random.choice([0, 1])
+        'a': random.choice(range(8)),
+        'b': random.choice(range(8)),
+        'c': random.choice(range(8)),
+        'd': random.choice(range(8)),
+        'e': random.choice(range(8)),
+        's': random.choice(range(4))
     })
     
+    o_value = sim.inspect(o)
+    print(str(o_value))
+    
 print('--- 3-bit 5:1 MUX ---')
-sim_trace.render_trace(symbol_len=1)
-o_value = sim.inspect(o)
-print(str(o_value))
+sim_trace.render_trace(symbol_len=4)
