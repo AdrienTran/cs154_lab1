@@ -46,7 +46,7 @@ with pyrtl.conditional_assignment:
 with pyrtl.conditional_assignment:
     with minutes == 59:
         with seconds == 59:
-            with hours == 24:
+            with hours == 23:
                 hours.next |= 0
             with pyrtl.otherwise:
                 hours.next |= hours + 1
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     sim_trace = pyrtl.SimulationTrace()
     sim = pyrtl.Simulation(tracer=sim_trace)
 
-    for cycle in range(10): # 10 seconds
+    for cycle in range(86401): # 10 seconds
         sim.step({})
 
     ### Uncomment the following line to the whole trace
