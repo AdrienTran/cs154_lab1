@@ -13,8 +13,4 @@ result = pyrtl.Output(bitwidth=1, name='o_wg')
 
 # Important: Assignments inside a "conditional_assignment"
 # are done with "|=" instead of the usual "<<="
-with pyrtl.conditional_assignment:
-  with select == 0:
-    result |= val_a
-  with select == 1:
-    result |= val_b
+result <<= (~select & val_a) | (select & val_b)
